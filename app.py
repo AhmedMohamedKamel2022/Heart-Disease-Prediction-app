@@ -2,17 +2,17 @@ import preprocess
 from flask import Flask, render_template, request
 import joblib
 
-app = Flask(__name__)
-
 scaler = joblib.load('Models\scaler.h5')
 model = joblib.load('Models\model.h5')
+
+app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('/predict', methods=['POST', 'GET'])
+@app.route('/predict', methods=['POST'])
 def get_prediction():
 
     if request.method == 'POST':
