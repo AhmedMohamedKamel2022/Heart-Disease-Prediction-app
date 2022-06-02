@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Heart Disease Prediction Application</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/images/8.jpg">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/css/style.css" rel="stylesheet">
+
+  </head>
+
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="d-flex flex-column">
+      <form 
+            action="/predict" method="POST"
+              target="_blank" 
+            >
+              <p  >What is your gender?</p>
+              <ul>
+                <li>
+                  <label for="Sex">Male</label>
+                  <input type="radio" id="yes" name="Sex" value="Male" required />
+                </li>
+                <br />
+                <li>
+                  <label for="Sex">Female</label>
+                  <input type="radio" id="no" name="Sex" value="Female" />
+                </li>
+              </ul>
+    
+              <p>Do you smoke?</p>
+              <ul>
+                <li>
+                  <label for="Smoking">Yes</label>
+                  <input type="radio" id="yes" name="Smoking" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="Smoking">No</label>
+                  <input type="radio" id="no" name="Smoking" value="No" />
+                </li>
+              </ul>
+    
+              <p>Did you have a stroke?</p>
+              <ul>
+                <li>
+                  <label for="Stroke">Yes</label>
+                  <input type="radio" id="yes" name="Stroke" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="Stroke">No</label>
+                  <input type="radio" id="no" name="Stroke" value="No" />
+                </li>
+              </ul>
+    
+              <p>Have you ever had diabetes?</p>
+              <ul>
+                <li>
+                  <label for="Diabetic">Yes</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="Diabetic"
+                    value="Yes"
+                    required
+                  />
+                </li>
+                <br />
+                <li>
+                  <label for="Diabetic">No</label>
+                  <input type="radio" id="no" name="Diabetic" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you have asthma?</p>
+              <ul>
+                <li>
+                  <label for="Asthma">Yes</label>
+                  <input type="radio" id="yes" name="Asthma" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="Asthma">No</label>
+                  <input type="radio" id="no" name="Asthma" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you have kidney disease?</p>
+              <ul>
+                <li>
+                  <label for="KidneyDisease">Yes</label>
+                  <input type="radio" id="yes" name="KidneyDisease" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="KidneyDisease">No</label>
+                  <input type="radio" id="no" name="KidneyDisease" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you have skin cancer?</p>
+              <ul>
+                <li>
+                  <label for="SkinCancer">Yes</label>
+                  <input type="radio" id="yes" name="SkinCancer" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="SkinCancer">No</label>
+                  <input type="radio" id="no" name="SkinCancer" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you drink alcohol?</p>
+              <ul>
+                <li>
+                  <label for="AlcoholDrinking">Yes</label>
+                  <input
+                    type="radio"
+                    id="yes"
+                    name="AlcoholDrinking"
+                    value="Yes"
+                    required
+                  />
+                </li>
+                <br />
+                <li>
+                  <label for="AlcoholDrinking">No</label>
+                  <input type="radio" id="no" name="AlcoholDrinking" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you play any sports (running, biking, etc...)?</p>
+              <ul>
+                <li>
+                  <label for="PhysicalActivity">Yes</label>
+                  <input type="radio" id="yes" name="PhysicalActivity" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="PhysicalActivity">No</label>
+                  <input type="radio" id="no" name="PhysicalActivity" value="No" />
+                </li>
+              </ul>
+    
+              <p>Do you have serious difficulty walking or climbing stairs?</p>
+              <ul>
+                <li>
+                  <label for="DiffWalking">Yes</label>
+                  <input type="radio" id="yes" name="DiffWalking" value="Yes" required />
+                </li>
+                <br />
+                <li>
+                  <label for="DiffWalking">No</label>
+                  <input type="radio" id="no" name="DiffWalking" value="No" required />
+                </li>
+              </ul>
+    
+              <table>
+                <p>What is your age category?</p>
+    
+                <input
+                  list="age"
+                  name="AgeCategory"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="age">
+                  <option value="18-24">18-24</option>
+                  <option value="25-29">25-29</option>
+                  <option value="30-34">30-34</option>
+                  <option value="35-39">35-39</option>
+                  <option value="40-44">40-44</option>
+                  <option value="45-49">45-49</option>
+                  <option value="50-54">50-54</option>
+                  <option value="55-59">55-59</option>
+                  <option value="60-64">60-64</option>
+                  <option value="65-69">65-69</option>
+                  <option value="70-74">70-74</option>
+                  <option value="75-79">75-79</option>
+                  <option value="80 or older">80 or older</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p>What is your race?</p>
+    
+                <input
+                  list="race"
+                  name="Race"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="race">
+                  <option value="American Indian/Alaskan Native">American Indian/Alaskan Native</option>
+                  <option value="White">White</option>
+                  <option value="Black">Black</option>
+                  <option value="Asian">Asian</option>
+                  <option value="Hispanic">Hispanic</option>
+                  <option value="Other">Other</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p>How can you define your general health?</p>
+    
+                <input
+                  list="general"
+                  name="GenHealth"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="general">
+                  <option value="Poor">Poor</option>
+                  <option value="Fair">Fair</option>
+                  <option value="Good">Good</option>
+                  <option value="Very Good">Very Good</option>
+                  <option value="Excellent">Excellent</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p>How many hours do you sleep?</p>
+    
+                <input
+                  list="sleep"
+                  name="SleepTime"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="sleep">
+                  <option value="1-4">1-4</option>
+                  <option value="4-6">4-6</option>
+                  <option value="6-8">6-8</option>
+                  <option value="8-12">8-12</option>
+                  <option value="12-24">12-24</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p>
+                  How many days during the past 30 days was your physical health not
+                  good?
+                </p>
+    
+                <input
+                  list="physical"
+                  name="PhysicalHealth"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="physical">
+                  <option value="0">0</option>
+                  <option value="1-9">1-9</option>
+                  <option value="10-19">10-19</option>
+                  <option value="20-29">20-29</option>
+                  <option value="30">30</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p>
+                  How many days during the past 30 days was your mental health not
+                  good?
+                </p>
+    
+                <input
+                  list="mental"
+                  name="MentalHealth"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="mental">
+                  <option value="0">0</option>
+                  <option value="1-9">1-9</option>
+                  <option value="10-19">10-19</option>
+                  <option value="20-29">20-29</option>
+                  <option value="30">30</option>
+                </datalist>
+              </table>
+              <br />
+    
+              <table>
+                <p >
+                  What is your body mass index category (BMI)?
+                 <a 
+                    href="https://nhlbi.nih.gov/health/educational/lose_wt/BMI/bmicalc.htm"
+                    target="_blank"
+                    >(Calculate BMI)
+                  </a>
+                </p>
+                <input
+                  list="BMI"
+                  name="BMI"
+                  placeholder="Select Category"
+                  required
+                />
+                <datalist id="BMI">
+                  <option value="Underweight">Underweight</option>
+                  <option value="Normalweight">Normalweight</option>
+                  <option value="Overweight">Overweight</option>
+                  <option value="Obesity">Obesity</option>
+                </datalist>
+              </table><br>
+              <input class="predict" style="
+                 text-align: center;
+                 width: 258px;
+                 border-radius: 30px;"
+                type="submit" value="Predict">
+
+            </form>
+
+        </div>
+       
+      </div>
+
+      
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex flex-column justify-content-center align-items-center" style="width: 100%; height: 100vh; background-size: cover;
+    background: url(/static/images/heart.jpg) top center;">
+  
+    <div class="hero-container" data-aos="fade-in">
+      <h1>Welcome</h1>
+      <p><span class="typed" data-typed-items="Heart, Disease, Prediction, Application"></span></p>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container" >
+
+        <div class="section-title" >
+          <h2>About</h2>
+          <p style="font-size: 25px;">Did you know that machine learning models can help you predict heart disease pretty accurately&#128562;! <br> In this app, you can estimate your probability for having heart disease in seconds &#128512;.
+            Here, a random forest  model using an over sampling technique was constructed using survey data of over 300k US residents from year 2020.</p>
+        </div>
+
+        <div class="row" >
+          <div class="col-lg-4" data-aos="fade-right">
+            <img src="/static/images/doctor.png" class="img-fluid" alt="">
+          </div>
+          <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+            <p class="fst-italic">
+             <p style="font-size: 25px;"> To predict your heart disease status, simply follow the steps bellow: <br>
+                - Filling your data that describe you &#9997. <br>
+                -  Press "Predict" and wait for the result &#128151;. <br>
+                <br><br><br><br><br>
+                Note: The range of probability for having heart disease between range 0% to 30% 
+                with other technique has the same attributes of this technique which used in this app.
+                <br> Therefore do not rely entirely on this result and go to the doctor, whatever the result.
+                <br> Good Luck &#128151;.  
+            </p>
+            </div>
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="/static/vendor/purecounter/purecounter.js"></script>
+  <script src="/static/vendor/aos/aos.js"></script>
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/static/vendor/typed.js/typed.min.js"></script>
+  <script src="/static/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/static/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/js/main.js"></script>
+
+</body>
+
+</html>
