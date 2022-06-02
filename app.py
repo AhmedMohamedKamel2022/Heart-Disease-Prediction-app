@@ -45,10 +45,10 @@ def get_prediction():
 
     print(predict)
     if predict== 0:
-        predict = "You don't have have heart disease"   
+        predict = "You don't have heart disease"   
 
     else:
-        predict = "You have have heart disease"              
+        predict = "You have heart disease"              
     return render_template('prediction.html', prediction=(predict))
 
 
